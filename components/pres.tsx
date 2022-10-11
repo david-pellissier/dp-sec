@@ -70,23 +70,23 @@ export default function PresentationCard({tool}){
     return (
         <div class="flex flex-col w-[437px] h-[382px] rounded-2xl bg-white shadow-2xl">
             <div class={"h-[191px] bg-stone-900 border-b-4 " + tool.border_color}></div>
-            <div class="flex flex-row">
-                <div class="flex flex-col w-full">
+            <div class="flex flex-row py-4">
+                <div class="flex flex-col w-full px-5">
                     <h3 class="text-2xl">{tool.name}</h3>
                     <div>{tool.description}</div>
                     <div>
                         {tool.tags.map(e => <span>{e} </span>)}
                     </div>
                 </div>
-                <div class="flex flex-col pr-4 h-full align-center">
-                    <div class={"relative -top-6 w-12 h-12 rounded-full " + tool.color}>
+                <div class="flex flex-col pr-4 h-full items-center">
+                    <div class={"relative -top-10 w-12 h-12 rounded-full " + tool.color}>
                         <img class="p-2" src={"/images/category/" + tool.icon}></img>    
                     </div>
-                    
-                    <div class="h-full">
-                        <img class="min-w-8 h-8" src="images/platform/python.png"></img>
-                        <img class="min-w-8 h-8" src="images/type/tool.png"></img>
+                    <div class="relative -top-4 h-full">
+                        <img class="w-8 h-8" src="images/platform/python.png"></img>
+                        <img class="w-8 h-8 mt-8" src="images/type/tool.png"></img>
                     </div>
+                    
                     
                 </div>
             </div>
