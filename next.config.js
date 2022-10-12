@@ -2,9 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  poweredByHeader: false,
   images: {
-    unoptimized : true
-  }
+    unoptimized : true // not compatible with GitHub Actions
+  },
+  basePath: "/"
 }
 
 module.exports = nextConfig
