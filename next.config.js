@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     unoptimized : true // not compatible with GitHub Actions
   },
-  assetPrefix: "",
+  assetPrefix: "/",
 }
 
 module.exports = nextConfig
