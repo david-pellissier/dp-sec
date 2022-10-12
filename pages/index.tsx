@@ -4,7 +4,7 @@ import CTFTools from '../components/tools'
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div class="">
       <CTFTools></CTFTools>
     </div>
   )
