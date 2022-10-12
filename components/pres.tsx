@@ -39,8 +39,8 @@ export class Tool {
         this.name = arr[keys.name];
         this.description = arr[keys.description]
         this.homepage = arr[keys.homepage]
-        this.documentation = arr[keys.documentation].split(',')
-        this.tags = arr[keys.tags].split(',')
+        this.documentation = arr[keys.documentation].split(',').filter((tag: string) => tag != "")
+        this.tags = arr[keys.tags].split(',').filter((tag: string) => tag != "")
         this.platform = arr[keys.platform]
         this.type = arr[keys.type]
         this.category = arr[keys.category]
@@ -64,19 +64,39 @@ export class Tool {
 }
 
 function Details(tool: any) {
+
+    let links
+    if (tool.documentation.length > 0){
+        links = <div>Useful links: 
+                    {tool.documentation.map((link: string, id: number) => <a href={link} className="mx-0.5" key={"link-" + id}>{id}</a>)}
+                </div>
+    }
+
     return (
-        <div>
-            <div className="flex flex-col rounded-2xl bg-white shadow-2xl w-[437px] h-[382px]">
+        <div className="relative">
+            <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-minus" />
+            <div className="flex flex-col rounded-2xl bg-stone-900 shadow-2xl w-[437px] h-[382px] gap-4">
+                <div className={"rounded-t-2xl border-b border-b-white py-3 px-5 center-inside " + tool.color}>
+                    <h3 className="text-2xl">{tool.name}</h3>
+                </div>
+                <div className="text-white p-6 flex flex-col">
+                    <div className="pb-2">Description: <q>{tool.description}</q></div>
+                    <div className="pb-2">
+                        <div>Homepage: <a href={tool.homepage}>{tool.homepage}</a></div>
+                        { links }
+                    </div>
+                    <div>Tags: {tool.tags.map((tag: string) => <span key={tool.name + tag} className="px-0.6 mr-2">{tag}</span>)}</div>
+                </div>
             </div>
         </div>
-        )
+    )
 }
 
 function Summary(tool: any) {
 
     return (
         <div className="relative">
-            <i className="text-white absolute top-12 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
+            <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
             <div className="flex flex-col relative w-[437px] rounded-2xl bg-white shadow-2xl h-[382px]">
                 <div className={"min-h-[191px] bg-stone-900 rounded-t-2xl border-b-4 " + tool.border_color}></div>
                 <div className="flex flex-row h-full py-4 justify-center">
@@ -105,10 +125,10 @@ function Summary(tool: any) {
 }
 
 export default function PresentationCard({ tool }: any) {
-    const [details, setDetails] =  useState(false)
+    const [details, setDetails] = useState(false)
 
     return (
-        <div onClick={_ => {setDetails(!details)}} className="w-min">
+        <div onClick={_ => { setDetails(!details) }} className="w-min">
             {details ? Details(tool) : Summary(tool)}
         </div>)
 }
