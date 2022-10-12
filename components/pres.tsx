@@ -75,8 +75,8 @@ function Details(tool: any) {
     return (
         <div className="relative">
             <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-minus" />
-            <div className="flex flex-col rounded-2xl bg-stone-900 shadow-2xl w-[437px] h-[382px] gap-4">
-                <div className={"rounded-t-2xl border-b border-b-white py-3 px-5 center-inside " + tool.color}>
+            <div className="flex flex-col bg-stone-900 w-[437px] h-[382px] gap-4">
+                <div className={"border-b border-b-white py-3 px-5 center-inside " + tool.color}>
                     <h3 className="text-2xl">{tool.name}</h3>
                 </div>
                 <div className="text-white p-6 flex flex-col">
@@ -97,8 +97,8 @@ function Summary(tool: any) {
     return (
         <div className="relative">
             <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
-            <div className="flex flex-col relative w-[437px] rounded-2xl bg-white shadow-2xl h-[382px]">
-                <div className={"min-h-[191px] bg-stone-900 rounded-t-2xl border-b-4 " + tool.border_color}></div>
+            <div className="flex flex-col relative w-[437px] bg-white h-[382px]">
+                <div className={"min-h-[191px] bg-stone-900 border-b-4 " + tool.border_color}></div>
                 <div className="flex flex-row h-full py-4 justify-center">
                     <div className="flex flex-col w-full max-w-[374px] px-5">
                         <h3 className="text-2xl">{tool.name}</h3>
@@ -128,7 +128,7 @@ export default function PresentationCard({ tool }: any) {
     const [details, setDetails] = useState(false)
 
     return (
-        <div onClick={_ => { setDetails(!details) }} className="w-min">
+        <div onClick={_ => { setDetails(!details) }} className="w-min shadow-2xl rounded-2xl overflow-clip">
             {details ? Details(tool) : Summary(tool)}
         </div>)
 }

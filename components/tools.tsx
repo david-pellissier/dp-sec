@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import PresentationCard, { Tool } from "./pres"
 
 const SHEET_URL = 'https://sheets.googleapis.com/v4/spreadsheets/153EWt5MA0mzLMnP5FlJ15d02YZwlyERIMjdAUdZwdzU/values/'
-const API_KEY = 'AIzaSyAZ61cJ1F5zWZZFZQlNvHp-RZ4nfVuM-WY'
+const API_KEY = 'AIzaSyAZ61cJ1F5zWZZFZQlNvHp-RZ4nfVuM-WY' // public API key with read-only access on this sheet
 const RANGE = 'tools!A:I'
 
 const URL = SHEET_URL + RANGE + "?key=" + API_KEY
