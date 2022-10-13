@@ -28,7 +28,7 @@ export default function CTFTools() {
     if (isLoading) return <p>Loading...</p>
     if (!data) return <p>No profile data</p>
     
-    return  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-cols-auto gap-4">
+    return  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 auto-cols-auto gap-4">
                     {data.map((i:number)=><PresentationCard key={"tool-"+i} tool={i}></PresentationCard>)}
             </div>
 }
