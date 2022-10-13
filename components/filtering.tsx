@@ -107,7 +107,6 @@ function Filters(data: Tool[], apply: Dispatch<Tool[]>) {
                     {FilterSelect(types, filter_types, [filter_category, filter_platforms, filter_types], data, apply)}
                 </div>
             </div>
-
         </div>
     )
 }
