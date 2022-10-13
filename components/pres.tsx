@@ -7,18 +7,18 @@ enum keys {
 
 const CATEGORIES: { [name: string]: string[] } = {
     Forensics: ["border-b-cyan-400", "bg-cyan-400", "forensic.png", "forensic-bg.png"],
-    "Android": ["border-b-green-400", "bg-green-400", "android.png", "android-bg.png"],
-    "Cryptography": ["border-b-yellow-200", "bg-yellow-200", "cryptography.png", "cryptography-bg.png"],
-    "Misc": ["border-b-gray-400", "bg-gray-400", "misc.png", "misc-bg.png"],
-    "Network": ["border-b-violet-500", "bg-violet-500", "network.png", "network-bg.png"],
-    "OSINT": ["border-b-orange-400", "bg-orange-400", "osint.png", "osint-bg.png"],
-    "Pentest": ["border-b-lime-400", "bg-lime-400", "pentest.png", "pentest-bg.png"],
-    "Pwn": ["border-b-rose-50", "bg-rose-500", "pwn.png", "pwn-bg.png"], // https://www.flaticon.com/free-icon/software-development_2560114?term=software&page=1&position=5&page=1&position=5&related_id=2560114&origin=style#
-    "Rev": ["border-b-red-500", "bg-red-500", "rev.png", "rev-bg.png"],
-    "Stegano": ["border-b-blue-500", "bg-blue-500", "stegano.png", "stegano-bg.png"],
-    "Web": ["border-b-fuchsia-400", "bg-fuchsia-400", "web.png", "web-bg.png"],
-    "Cloud": ["border-b-purple-400", "bg-purple-400", "cloud.png", "cloud-bg.png"],
-    "Unknown": ["border-b-white", "bg-white", "unknown.png", "unknown-bg.png"]
+    Android: ["border-b-green-400", "bg-green-400", "android.png", "android-bg.png"],
+    Cryptography: ["border-b-yellow-200", "bg-yellow-200", "cryptography.png", "cryptography-bg.png"],
+    Misc: ["border-b-gray-400", "bg-gray-400", "misc.png", "misc-bg.png"],
+    Network: ["border-b-violet-500", "bg-violet-500", "network.png", "network-bg.png"],
+    OSINT: ["border-b-orange-400", "bg-orange-400", "osint.png", "osint-bg.png"],
+    Pentest: ["border-b-lime-400", "bg-lime-400", "pentest.png", "pentest-bg.png"],
+    Pwn: ["border-b-rose-50", "bg-rose-500", "pwn.png", "pwn-bg.png"], // https://www.flaticon.com/free-icon/software-development_2560114?term=software&page=1&position=5&page=1&position=5&related_id=2560114&origin=style#
+    Rev: ["border-b-red-500", "bg-red-500", "rev.png", "rev-bg.png"],
+    Stegano: ["border-b-blue-500", "bg-blue-500", "stegano.png", "stegano-bg.png"],
+    Web: ["border-b-fuchsia-400", "bg-fuchsia-400", "web.png", "web-bg.png"],
+    Cloud: ["border-b-purple-400", "bg-purple-400", "cloud.png", "cloud-bg.png"],
+    Unknown: ["border-b-white", "bg-white", "unknown.png", "unknown-bg.png"]
 }
 
 export class Tool {

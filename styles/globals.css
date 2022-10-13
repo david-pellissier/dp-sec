@@ -20,7 +20,18 @@ body {
   justify-content: center;
 }
 
-a {
-  color: lightblue;
-  text-decoration: underline;
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  
+  h2 {
+    @apply text-xl;
+  }
+
+  a {
+    color: lightblue;
+    text-decoration: underline;
+  }
 }
+
