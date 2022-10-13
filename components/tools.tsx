@@ -50,6 +50,10 @@ export default function CTFTools() {
             <h1>CTF and security tools</h1>
             {Filters(data, setFilteredData)}
             {DisplayTools(filteredData, isLoading)}
+            <div className="h-12 pt-12">
+                <a className="text-black " href="https://www.flaticon.com/free-icons/logo" title="logo icons">Logo icons created by Freepik - Flaticon</a>
+            </div>
+            
         </div>
         )
 }

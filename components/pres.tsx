@@ -13,12 +13,34 @@ const CATEGORIES: { [name: string]: string[] } = {
     Network: ["border-b-violet-500", "bg-violet-500", "network.png", "network-bg.png"],
     OSINT: ["border-b-orange-400", "bg-orange-400", "osint.png", "osint-bg.png"],
     Pentest: ["border-b-lime-400", "bg-lime-400", "pentest.png", "pentest-bg.png"],
-    Pwn: ["border-b-rose-50", "bg-rose-500", "pwn.png", "pwn-bg.png"], // https://www.flaticon.com/free-icon/software-development_2560114?term=software&page=1&position=5&page=1&position=5&related_id=2560114&origin=style#
+    Pwn: ["border-b-rose-50", "bg-rose-500", "pwn.png", "pwn-bg.png"],
     Rev: ["border-b-red-500", "bg-red-500", "rev.png", "rev-bg.png"],
     Stegano: ["border-b-blue-500", "bg-blue-500", "stegano.png", "stegano-bg.png"],
     Web: ["border-b-fuchsia-400", "bg-fuchsia-400", "web.png", "web-bg.png"],
     Cloud: ["border-b-purple-400", "bg-purple-400", "cloud.png", "cloud-bg.png"],
     Unknown: ["border-b-white", "bg-white", "unknown.png", "unknown-bg.png"]
+}
+
+const PLATFORMS: {[name: string]: string} = {
+    Browser: "browser.png",
+    Java: "java.png",
+    Linux: "linux.png",
+    "Linux/Windows": "linux-windows.png",
+    Other: "other.png",
+    Plugin: "plugin.png",
+    Python: "python.png",
+    Windows: "windows.png"
+}
+
+const TYPES: {[name: string]: string} = {
+    Cheatsheet: "cheatsheet.png",
+    "Lib/Framework": "framework.png",
+    Guide: "guide.png",
+    List: "list.png",
+    Sandbox: "sandbox.png",
+    Scan: "scan.png",
+    Tool: "tool.png",
+    Training: "training.png"
 }
 
 export class Tool {
@@ -114,8 +136,8 @@ function Summary(tool: any) {
                             </div>
                         </div>
                         <div className="relative -top-4 h-full flex flex-col gap-[35px]">
-                            <Image height='32px' width='32px' alt={tool.platform} title={tool.platform} src="/images/platform/python.png" />
-                            <Image height='32px' width='32px' alt={tool.type} title={tool.type} src="/images/type/tool.png" />
+                            <Image height='32px' width='32px' alt={tool.platform} title={tool.platform} src={"/images/platform/" + PLATFORMS[tool.platform]} />
+                            <Image height='32px' width='32px' alt={tool.type} title={tool.type} src={"/images/type/" + TYPES[tool.type]} />
                         </div>
                     </div>
                 </div>

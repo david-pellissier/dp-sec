@@ -91,8 +91,7 @@ function Filters(data: Tool[], apply: Dispatch<Tool[]>) {
 
 
     return (
-        <div className="flex justify-end py-4 px-12">
-            <h2 className="self-end w-min pr-4">Filters</h2>
+        <div className="flex justify-end py-4 px-8">
             <div className="flex flex-row gap-4 justify-center w-min">
                 <div>
                     <h3>Category: </h3>
