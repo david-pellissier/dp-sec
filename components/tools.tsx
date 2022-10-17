@@ -3,17 +3,14 @@ import PresentationCard, { Tool } from "./pres"
 import Filters from "./filtering"
 
 const SHEET_URL = 'https://sheets.googleapis.com/v4/spreadsheets/153EWt5MA0mzLMnP5FlJ15d02YZwlyERIMjdAUdZwdzU/values/'
-const API_KEY = 'AIzaSyAZ61cJ1F5zWZZFZQlNvHp-RZ4nfVuM-WY' // public API key with read-only access on this sheet
+const API_KEY = 'AIzaSyAZ61cJ1F5zWZZFZQlNvHp-RZ4nfVuM-WY' // public API key with read-only access on public sheets
 const RANGE = 'tools!A:I'
-
 const URL = SHEET_URL + RANGE + "?key=" + API_KEY
-
-
 
 
 function FetchData(setData: Dispatch<Tool[]>, setFilteredData: Dispatch<Tool[]>, setLoading: Dispatch<boolean>) {
 
-    useEffect(() => {
+    useEffect(()=> {
         setLoading(true)
         fetch(URL)
             .then((res) => res.json())
@@ -25,7 +22,7 @@ function FetchData(setData: Dispatch<Tool[]>, setFilteredData: Dispatch<Tool[]>,
                 setFilteredData(tools)
                 setLoading(false)
             })
-    }, [])
+    }, [setData,setFilteredData,setLoading])
 }
 
 function DisplayTools(data: Tool[], isLoading: boolean) {
@@ -51,9 +48,8 @@ export default function CTFTools() {
             {Filters(data, setFilteredData)}
             {DisplayTools(filteredData, isLoading)}
             <div className="h-12 pt-12">
-                <a className="text-black " href="https://www.flaticon.com/free-icons/logo" title="logo icons">Logo icons created by Freepik - Flaticon</a>
+                <a className="text-black text-small" href="https://www.flaticon.com/free-icons/logo" title="logo icons">Logo icons created by Freepik - Flaticon</a>
             </div>
-            
         </div>
         )
 }
