@@ -11,10 +11,10 @@ Its main feature of is a curated list of CTF tools and resources. The app connec
 ## To Do List
 
 - Header
-    - [] Implement
-    - [] Responsiveness
+    - [ ] Implement
+    - [ ] Responsiveness
 - Blog
-    - [] Markdown posts
+    - [ ] Markdown posts
 - About me
 - CTF Tools
     - [x] Grid format
@@ -25,7 +25,7 @@ Its main feature of is a curated list of CTF tools and resources. The app connec
         - [x] Search box
         - [ ] Select multiple values for each filter
         - [ ] Better looking selectors 
-    - [] Table format
+    - [ ] Table format
 
 ## Getting Started
 
