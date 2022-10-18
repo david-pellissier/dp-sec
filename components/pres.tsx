@@ -1,6 +1,11 @@
 import Image from "next/image"
 import { useState } from "react"
 
+const WIDTH = "w-[437px]"
+const HEIGHT = "h-[382px]"
+const IMAGE_HEIGHT = "min-h-[191px]"
+const SHOWN_TAGS = 3
+
 enum keys {
     name, description, homepage, documentation, tags, category, platform, type, image // needs to match the order of Google Sheets columns
 }
@@ -97,7 +102,7 @@ function Details(tool: any) {
     return (
         <div className="relative">
             <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-minus" />
-            <div className="flex flex-col bg-stone-900 w-[437px] h-[382px] gap-4">
+            <div className={"flex flex-col bg-stone-900 gap-4 " + WIDTH + " " + HEIGHT} >
                 <div className={"border-b border-b-white py-3 px-5 center-inside " + tool.color}>
                     <h3 className="text-2xl">{tool.name}</h3>
                 </div>
@@ -119,17 +124,18 @@ function Summary(tool: any) {
     return (
         <div className="relative">
             <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
-            <div className="flex flex-col relative w-[437px] bg-white h-[382px]">
-                <div className={"min-h-[191px] bg-stone-900 border-b-4 " + tool.border_color}></div>
-                <div className="flex flex-row h-full py-4 justify-center">
-                    <div className="flex flex-col w-full max-w-[374px] px-5">
+            <div className={"flex flex-col relative bg-white " +  WIDTH + " " + HEIGHT}>
+                <div className={" bg-stone-900 border-b-4 " + IMAGE_HEIGHT + " " + tool.border_color}></div>
+                <div className="flex flex-row h-full py-4 px-4 justify-center">
+                    <div className="flex flex-col w-full">
                         <h3 className="text-2xl">{tool.name}</h3>
                         <div className="max-h-24 truncate whitespace-normal leading-[18px]">{(tool.description.length > 150) ? tool.description.substr(0, 150) + "..." : tool.description}</div>
                         <div className="mt-auto max-w-full truncate">
-                            {tool.tags.map((tag: string) => <span key={tag} className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">{tag}</span>)}
+                            {tool.tags.slice(0,SHOWN_TAGS).map((tag: string) => <span key={tag} className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">{tag}</span>)}
+                            { tool.tags.length > SHOWN_TAGS && <span className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">+{tool.tags.length - SHOWN_TAGS}</span>}
                         </div>
                     </div>
-                    <div className="flex flex-col pr-4 h-full items-center">
+                    <div className="flex flex-col h-full items-center">
                         <div className={"relative -top-10 rounded-full min-w-[50px] min-h-[50px] " + tool.color}>
                             <div className="center-inside h-full">
                                 <Image height='32px' width='32px' alt={tool.category} title={tool.category} className="m-auto" layout="fixed" src={"/images/category/" + tool.icon} />
