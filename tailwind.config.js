@@ -5,7 +5,8 @@ module.exports = {
     "./components/**/*.tsx",
   ],
   theme: {
-    'lg' : '1080px'
+    'lg' : '1080px',
+    '2k' : '1921px'
   },
   plugins: [
 

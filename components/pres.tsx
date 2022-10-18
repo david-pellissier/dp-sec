@@ -4,6 +4,7 @@ import { useState } from "react"
 const CARD_W =  "min-w-[20vw] sm:min-w-[16vw]"
 const CARD_H = "h-[50vh] md-[30vh] lg:h-[32vh] lh:h-[40vh]"
 const IMG_H = "min-h-[14vh]" // size of the top element of each card
+
 const SHOWN_TAGS = (typeof window !== 'undefined') ? (window.innerWidth <= 1080 ? 2 : 3) : 1  // number of shown tags according screen size. Looks horrible but it works fine :3
 
 enum keys {
@@ -99,17 +100,17 @@ function Details(tool: any) {
                 <div className={"border-b border-b-white py-3 px-5 center-inside " + tool.color}>
                     <h3 className="text-2xl">{tool.name}</h3>
                 </div>
-                <div className="text-white p-6 flex flex-col">
-                    <div className="pb-2">Description: <q>{tool.description}</q></div>
+                <div className="text-white px-6 flex flex-col">
+                    <div className="pb-2 overflow-scroll">Description: <q>{tool.description}</q></div>
                     <div className="pb-2">
                         <div>Homepage: <a href={tool.homepage}>link</a></div>
-                        {tool.documentation.length > 0 &&
+                        {tool.documentation.length > 0 && // show only if there is/are doc
                             <div>Useful links:
                                 {tool.documentation.map((link: string, id: number) => <a href={link} className="mx-0.5" key={"link-" + id}>{id}</a>)}
                             </div>
                         }
                     </div>
-                    {tool.tags.length != 0 &&
+                    {tool.tags.length != 0 && // show only if at least one tag has been defined
                         <div>Tags: {tool.tags.map((tag: string) => <span key={tool.name + tag}>{tool.tags[tool.tags.length - 1] !== tag ? tag + ", " : tag}</span>)}</div>
                     }
                 </div>
@@ -124,12 +125,12 @@ function Summary(tool: any) {
         <div className="relative">
             <i className="text-white absolute top-6 md:top-8 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
             <div className={"flex flex-col relative bg-white " + CARD_W + " " + CARD_H}>
-                <div className={" bg-stone-900 border-b-4 " + IMG_H + " " + tool.border_color}></div>
+                <div className={"bg-stone-900 border-b-4 " + IMG_H + " " + tool.border_color}></div>
                 <div className="flex flex-row h-full py-4 px-4 gap-4 justify-center">
                     <div className="flex flex-col w-full">
-                        <h3 className="text-2xl">{tool.name}</h3>
-                        <div className="max-h-full truncate whitespace-normal leading-[18px] mb-auto py-4">{(tool.description.length > 150) ? tool.description.substr(0, 150) + "..." : tool.description}</div>
-                        <div className="max-w-full truncate">
+                        <h3 className="text-xl 2k:text-2xl">{tool.name}</h3>
+                        <div className="leading-[18px] max-h-32 md:max-h-[9vh] text-clip overflow-hidden break-words">{tool.description}</div>
+                        <div className="max-w-full truncate mt-auto">
                             {tool.tags.slice(0, SHOWN_TAGS).map((tag: string) => <span key={tag} className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">{tag}</span>)}
                             {tool.tags.length > SHOWN_TAGS && <span className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">+{tool.tags.length - SHOWN_TAGS}</span>}
                         </div>
