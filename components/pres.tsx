@@ -102,7 +102,7 @@ function Details(tool: any) {
                 <div className="text-white p-6 flex flex-col">
                     <div className="pb-2">Description: <q>{tool.description}</q></div>
                     <div className="pb-2">
-                        <div>Homepage: <a href={tool.homepage}>{tool.homepage}</a></div>
+                        <div>Homepage: <a href={tool.homepage}>link</a></div>
                         {tool.documentation.length > 0 &&
                             <div>Useful links:
                                 {tool.documentation.map((link: string, id: number) => <a href={link} className="mx-0.5" key={"link-" + id}>{id}</a>)}

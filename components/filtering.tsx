@@ -112,12 +112,12 @@ function SearchInput(data: Tool[], filters: Array<Filter<any>>, setFilteredData:
     return (
         <div className="flex flex-row" >
             <input type="text"
-                className="form-control block w-content px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control w-full min-w-min px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Search tools"
                 id="search-input"
             />
             <button type="button"
-                className="inline-block p-1.5 bg-stone-900 text-white font-medium text-xs leading-tight uppercase rounded-r shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                className="md:mr-8 inline-block p-1.5 bg-stone-900 text-white font-medium text-xs leading-tight uppercase rounded-r shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 onClick={_ => filter_data(filters, data, setFilteredData)}>
                 <i className="fa-solid fa-search"></i>
             </button>
@@ -157,33 +157,39 @@ function Filters(data: Tool[], apply: Dispatch<Tool[]>) {
 
 
     return (
-        <div className="flex justify-end py-4 px-8">
-            <div className="flex flex-row gap-4 justify-center w-min">
-                <div>
-                    <h3>Category: </h3>
-                    {FilterSelect(categories, filter_category, filter_array, data, apply)}
-                </div>
-                <div>
-                    <h3>Platform: </h3>
-                    {FilterSelect(platforms, filter_platforms, filter_array, data, apply)}
-                </div>
-                <div>
-                    <h3>Type: </h3>
-                    {FilterSelect(types, filter_types, filter_array, data, apply)}
-                </div>
-                <div>
-                    <h3>Search</h3>
-                    {SearchInput(data, filter_array, apply)}
-                </div>
-                <div className="flex">
-                    <button type="button" onClick={_ => reset(filter_array, data, apply)}
-                        className="mt-auto inline-block px-1.5 py-3 h-min font-medium text-xs leading-tight rounded hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                    >
-                        <i title="Reset filters" className="fa-solid fa-arrow-rotate-left"></i>
-                    </button>
+        <div>
+            <div className="flex justify-end ">
+                <div className="flex flex-col md:flex-row gap-4 justify-center w-full border md:border-0 md:w-min py-4 px-8">
+                    <h3 className="md:hidden"><b>Filters</b></h3>
+                    <div>
+                        <h3>Category: </h3>
+                        {FilterSelect(categories, filter_category, filter_array, data, apply)}
+                    </div>
+                    <div>
+                        <h3>Platform: </h3>
+                        {FilterSelect(platforms, filter_platforms, filter_array, data, apply)}
+                    </div>
+                    <div>
+                        <h3>Type: </h3>
+                        {FilterSelect(types, filter_types, filter_array, data, apply)}
+                    </div>
+                    <div>
+                        <h3>Search</h3>
+                        {SearchInput(data, filter_array, apply)}
+                    </div>
+                    <div className="flex">
+                        <button type="button" onClick={_ => reset(filter_array, data, apply)}
+                            className="ml-auto mt-auto flex px-1.5 py-3 h-min font-medium text-xs leading-tight rounded active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                        >
+                            <h3 className="md:hidden mr-2">Reset </h3>
+                            <i title="Reset filters" className="fa-solid fa-arrow-rotate-left"></i>
+                            
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+
     )
 }
 

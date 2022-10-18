@@ -12,8 +12,7 @@ const Home: NextPage = () => {
         <link href="/css/fontawesome.min.css" rel="stylesheet"/>
       </Head>
       <CTFTools></CTFTools>
-      
-      
+    
     </div>
   )
 }
