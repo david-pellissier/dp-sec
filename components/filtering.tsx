@@ -98,7 +98,8 @@ function FilterSelect(values: string[], filter: Filter<any>, filters: Filter<any
                                 rounded
                                 transition
                                 ease-in-out
-                                m-0
+                                w-[38vw]
+                                md:w-fit
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             id={filter.id}
             onChange={(v) => { filter_data(filters, data, setFilteredData) }}>
@@ -112,7 +113,7 @@ function SearchInput(data: Tool[], filters: Array<Filter<any>>, setFilteredData:
     return (
         <div className="flex flex-row" >
             <input type="text"
-                className="form-control w-full min-w-min px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control  w-[32vw]  md:max-w-min px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none"
                 placeholder="Search tools"
                 id="search-input"
             />
@@ -159,20 +160,20 @@ function Filters(data: Tool[], apply: Dispatch<Tool[]>) {
             <div className="flex justify-end ">
                 <div className="flex flex-col md:flex-row gap-4 justify-center w-full border md:border-0 md:w-min py-4 px-8">
                     <h3 className="md:hidden"><b>Filters</b></h3>
-                    <div>
+                    <div className="flex md:block w-full justify-between place-items-center">
                         <h3>Category: </h3>
                         {FilterSelect(categories, filter_category, filter_array, data, apply)}
                     </div>
-                    <div>
+                    <div className="flex md:block w-full justify-between place-items-center">
                         <h3>Platform: </h3>
                         {FilterSelect(platforms, filter_platforms, filter_array, data, apply)}
                     </div>
-                    <div>
+                    <div className="flex md:block w-full justify-between place-items-center">
                         <h3>Type: </h3>
                         {FilterSelect(types, filter_types, filter_array, data, apply)}
                     </div>
-                    <div>
-                        <h3>Search</h3>
+                    <div className="flex md:block w-full justify-between place-items-center">
+                        <h3>Search: </h3>
                         {SearchInput(data, filter_array, apply)}
                     </div>
                     <div className="flex">
