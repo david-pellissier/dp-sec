@@ -29,7 +29,7 @@ function DisplayTools(data: Tool[], isLoading: boolean) {
     if (isLoading) return <p>Loading...</p>
     if (!data) return <p>Could not retrieve data  :/</p>
 
-    return <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 auto-cols-auto gap-4 place-content-between place-items-center">
+    return <div className="grid justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 lg:gap-7 my-10">
         {data.map((t: Tool, i: number) => <PresentationCard key={"tool-" + i} tool={t}></PresentationCard>)}
     </div>
 }

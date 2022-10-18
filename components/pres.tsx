@@ -1,10 +1,10 @@
 import Image from "next/image"
 import { useState } from "react"
 
-const WIDTH = "w-[437px]"
-const HEIGHT = "h-[382px]"
-const IMAGE_HEIGHT = "min-h-[191px]"
-const SHOWN_TAGS = 3
+const CARD_W =  "min-w-[20vw] sm:min-w-[16vw]"
+const CARD_H = "h-[30vh] lg:h-[32vh] lh:h-[40vh]"
+const IMG_H = "min-h-[9vh] sm:min-h-[12vh]" // size of the top element of each card
+const SHOWN_TAGS = (typeof window !== 'undefined') ? (window.innerWidth <= 1080 ? 2 : 3) : 1  // number of tags to appear on the summary side
 
 enum keys {
     name, description, homepage, documentation, tags, category, platform, type, image // needs to match the order of Google Sheets columns
@@ -26,7 +26,7 @@ const CATEGORIES: { [name: string]: string[] } = {
     Unknown: ["border-b-white", "bg-white", "unknown.png", "unknown-bg.png"]
 }
 
-const PLATFORMS: {[name: string]: string} = {
+const PLATFORMS: { [name: string]: string } = {
     Browser: "browser.png",
     Java: "java.png",
     Linux: "linux.png",
@@ -37,7 +37,7 @@ const PLATFORMS: {[name: string]: string} = {
     Windows: "windows.png"
 }
 
-const TYPES: {[name: string]: string} = {
+const TYPES: { [name: string]: string } = {
     Cheatsheet: "cheatsheet.png",
     "Lib/Framework": "framework.png",
     Guide: "guide.png",
@@ -92,17 +92,10 @@ export class Tool {
 
 function Details(tool: any) {
 
-    let links
-    if (tool.documentation.length > 0){
-        links = <div>Useful links: 
-                    {tool.documentation.map((link: string, id: number) => <a href={link} className="mx-0.5" key={"link-" + id}>{id}</a>)}
-                </div>
-    }
-
     return (
         <div className="relative">
             <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-minus" />
-            <div className={"flex flex-col bg-stone-900 gap-4 " + WIDTH + " " + HEIGHT} >
+            <div className={"flex flex-col bg-stone-900 gap-4 " + CARD_W + " " + CARD_H} >
                 <div className={"border-b border-b-white py-3 px-5 center-inside " + tool.color}>
                     <h3 className="text-2xl">{tool.name}</h3>
                 </div>
@@ -110,9 +103,15 @@ function Details(tool: any) {
                     <div className="pb-2">Description: <q>{tool.description}</q></div>
                     <div className="pb-2">
                         <div>Homepage: <a href={tool.homepage}>{tool.homepage}</a></div>
-                        { links }
+                        {tool.documentation.length > 0 &&
+                            <div>Useful links:
+                                {tool.documentation.map((link: string, id: number) => <a href={link} className="mx-0.5" key={"link-" + id}>{id}</a>)}
+                            </div>
+                        }
                     </div>
-                    <div>Tags: {tool.tags.map((tag: string) => <span key={tool.name + tag} className="px-0.6 mr-2">{tag}</span>)}</div>
+                    {tool.tags.length != 0 &&
+                        <div>Tags: {tool.tags.map((tag: string) => <span key={tool.name + tag}>{tool.tags[tool.tags.length - 1] !== tag ? tag + ", " : tag}</span>)}</div>
+                    }
                 </div>
             </div>
         </div>
@@ -124,15 +123,15 @@ function Summary(tool: any) {
     return (
         <div className="relative">
             <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
-            <div className={"flex flex-col relative bg-white " +  WIDTH + " " + HEIGHT}>
-                <div className={" bg-stone-900 border-b-4 " + IMAGE_HEIGHT + " " + tool.border_color}></div>
-                <div className="flex flex-row h-full py-4 px-4 justify-center">
+            <div className={"flex flex-col relative bg-white " + CARD_W + " " + CARD_H}>
+                <div className={" bg-stone-900 border-b-4 " + IMG_H + " " + tool.border_color}></div>
+                <div className="flex flex-row h-full py-4 px-4 gap-4 justify-center">
                     <div className="flex flex-col w-full">
                         <h3 className="text-2xl">{tool.name}</h3>
-                        <div className="max-h-24 truncate whitespace-normal leading-[18px]">{(tool.description.length > 150) ? tool.description.substr(0, 150) + "..." : tool.description}</div>
-                        <div className="mt-auto max-w-full truncate">
-                            {tool.tags.slice(0,SHOWN_TAGS).map((tag: string) => <span key={tag} className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">{tag}</span>)}
-                            { tool.tags.length > SHOWN_TAGS && <span className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">+{tool.tags.length - SHOWN_TAGS}</span>}
+                        <div className="max-h-full truncate whitespace-normal leading-[18px] mb-auto py-4">{(tool.description.length > 150) ? tool.description.substr(0, 150) + "..." : tool.description}</div>
+                        <div className="max-w-full truncate">
+                            {tool.tags.slice(0, SHOWN_TAGS).map((tag: string) => <span key={tag} className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">{tag}</span>)}
+                            {tool.tags.length > SHOWN_TAGS && <span className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">+{tool.tags.length - SHOWN_TAGS}</span>}
                         </div>
                     </div>
                     <div className="flex flex-col h-full items-center">
@@ -156,7 +155,7 @@ export default function PresentationCard({ tool }: any) {
     const [details, setDetails] = useState(false)
 
     return (
-        <div onClick={_ => { setDetails(!details) }} className="w-min shadow-2xl rounded-2xl overflow-clip">
+        <div onClick={_ => { setDetails(!details) }} className="shadow-2xl rounded-2xl overflow-clip min-h-full">
             {details ? Details(tool) : Summary(tool)}
         </div>)
 }
