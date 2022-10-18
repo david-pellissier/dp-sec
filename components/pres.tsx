@@ -1,7 +1,7 @@
 import Image from "next/image"
-import { useState } from "react"
+import { Dispatch, useState } from "react"
 
-const CARD_W =  "min-w-[20vw] sm:min-w-[16vw]"
+const CARD_W = "min-w-[20vw] sm:min-w-[16vw]"
 const CARD_H = "h-[50vh] md-[30vh] lg:h-[32vh] lh:h-[40vh]"
 const IMG_H = "min-h-[14vh]" // size of the top element of each card
 
@@ -91,17 +91,17 @@ export class Tool {
     }
 }
 
-function Details(tool: any) {
+function Details(tool: any, setDetails: Function) {
 
     return (
         <div className="relative">
-            <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-minus" />
             <div className={"flex flex-col bg-stone-900 gap-4 " + CARD_W + " " + CARD_H} >
-                <div className={"border-b border-b-white py-3 px-5 center-inside " + tool.color}>
+                <div onClick={_ => setDetails()} className={"border-b border-b-white py-3 px-5 center-inside " + tool.color}>
                     <h3 className="text-2xl">{tool.name}</h3>
+                    <i className="absolute top-5 right-8 z-40 text-white fa-solid ml-auto fa-magnifying-glass-minus" />
                 </div>
                 <div className="text-white px-6 flex flex-col">
-                    <div className="pb-2 overflow-scroll">Description: <q>{tool.description}</q></div>
+                    <div className="pb-2 overflow-scroll max-h-[33vh] md:max-h-[16vh]">Description: <q>{tool.description}</q></div>
                     <div className="pb-2">
                         <div>Homepage: <a href={tool.homepage}>link</a></div>
                         {tool.documentation.length > 0 && // show only if there is/are doc
@@ -119,17 +119,20 @@ function Details(tool: any) {
     )
 }
 
-function Summary(tool: any) {
+function Summary(tool: any, setDetails: Function) {
 
     return (
         <div className="relative">
-            <i className="text-white absolute top-6 md:top-8 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
             <div className={"flex flex-col relative bg-white " + CARD_W + " " + CARD_H}>
-                <div className={"bg-stone-900 border-b-4 " + IMG_H + " " + tool.border_color}></div>
+                <div onClick={_ => setDetails()} className={"border-b-4 bg-stone-900 " + IMG_H + " " + tool.border_color}>
+                    <div className={"opacity-0 hover:opacity-100 hover:bg-stone-900/80 h-full w-full z-10"}>
+                        <i className="text-white absolute top-6 md:top-8 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
+                    </div>
+                </div>
                 <div className="flex flex-row h-full py-4 px-4 gap-4 justify-center">
                     <div className="flex flex-col w-full">
                         <h3 className="text-xl 2k:text-2xl">{tool.name}</h3>
-                        <div className="leading-[18px] max-h-32 md:max-h-[9vh] text-clip overflow-hidden break-words">{tool.description}</div>
+                        <div className="leading-[18px] max-h-[23vh] md:max-h-[9vh] text-clip overflow-hidden break-words">{tool.description}</div>
                         <div className="max-w-full truncate mt-auto">
                             {tool.tags.slice(0, SHOWN_TAGS).map((tag: string) => <span key={tag} className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">{tag}</span>)}
                             {tool.tags.length > SHOWN_TAGS && <span className="rounded-md bg-neutral-200 px-0.5 py-0.5 mr-2">+{tool.tags.length - SHOWN_TAGS}</span>}
@@ -156,7 +159,7 @@ export default function PresentationCard({ tool }: any) {
     const [details, setDetails] = useState(false)
 
     return (
-        <div onClick={_ => { setDetails(!details) }} className="shadow-2xl rounded-2xl overflow-clip min-h-full">
-            {details ? Details(tool) : Summary(tool)}
+        <div className="shadow-2xl rounded-2xl overflow-clip min-h-full">
+            {details ? Details(tool, ()=>setDetails(false)) : Summary(tool, ()=>setDetails(true))}
         </div>)
 }
