@@ -141,18 +141,16 @@ function Filters(data: Tool[], apply: Dispatch<Tool[]>) {
         let categories_temp = new Set<string>()
         let platforms_temp = new Set<string>()
         let types_temp = new Set<string>()
-        let tags_temp = new Set<string>()
 
         data.map((t: Tool) => {
             categories_temp.add(t.category)
             platforms_temp.add(t.platform)
             types_temp.add(t.type)
-            t.tags.forEach(tag => tags_temp.add(tag))
         })
 
-        categories = Array.from(categories_temp)
-        platforms = Array.from(platforms_temp)
-        types = Array.from(types_temp)
+        categories = Array.from(categories_temp).sort()
+        platforms = Array.from(platforms_temp).sort()
+        types = Array.from(types_temp).sort()
     }
 
 
