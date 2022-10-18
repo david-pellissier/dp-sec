@@ -10,7 +10,7 @@ const URL = SHEET_URL + RANGE + "?key=" + API_KEY
 
 function FetchData(setData: Dispatch<Tool[]>, setFilteredData: Dispatch<Tool[]>, setLoading: Dispatch<boolean>) {
 
-    useEffect(()=> {
+    useEffect(() => {
         setLoading(true)
         fetch(URL)
             .then((res) => res.json())
@@ -22,7 +22,7 @@ function FetchData(setData: Dispatch<Tool[]>, setFilteredData: Dispatch<Tool[]>,
                 setFilteredData(tools)
                 setLoading(false)
             })
-    }, [setData,setFilteredData,setLoading])
+    }, [setData, setFilteredData, setLoading])
 }
 
 function DisplayTools(data: Tool[], isLoading: boolean) {
@@ -47,9 +47,17 @@ export default function CTFTools() {
             <h1>CTF and security tools</h1>
             {Filters(data, setFilteredData)}
             {DisplayTools(filteredData, isLoading)}
+            <div className="sticky mr-3 bottom-8 ml-auto text-end opacity-80 w-fit">
+                <div className="center-inside rounded-full bg-stone-600  border border-white w-8 h-8">
+                    <a className="text-white" href="#">
+                        <i className="fa-solid fa-caret-up"></i>
+                    </a>
+                </div>
+                
+            </div>
             <div className="h-12 pt-12">
                 <a className="text-black text-small" href="https://www.flaticon.com/free-icons/logo" title="logo icons">Logo icons created by Freepik - Flaticon</a>
             </div>
         </div>
-        )
+    )
 }

@@ -2,9 +2,9 @@ import Image from "next/image"
 import { useState } from "react"
 
 const CARD_W =  "min-w-[20vw] sm:min-w-[16vw]"
-const CARD_H = "h-[30vh] lg:h-[32vh] lh:h-[40vh]"
-const IMG_H = "min-h-[9vh] sm:min-h-[12vh]" // size of the top element of each card
-const SHOWN_TAGS = (typeof window !== 'undefined') ? (window.innerWidth <= 1080 ? 2 : 3) : 1  // number of tags to appear on the summary side
+const CARD_H = "h-[50vh] md-[30vh] lg:h-[32vh] lh:h-[40vh]"
+const IMG_H = "min-h-[14vh]" // size of the top element of each card
+const SHOWN_TAGS = (typeof window !== 'undefined') ? (window.innerWidth <= 1080 ? 2 : 3) : 1  // number of shown tags according screen size. Looks horrible but it works fine :3
 
 enum keys {
     name, description, homepage, documentation, tags, category, platform, type, image // needs to match the order of Google Sheets columns
@@ -122,7 +122,7 @@ function Summary(tool: any) {
 
     return (
         <div className="relative">
-            <i className="text-white absolute top-5 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
+            <i className="text-white absolute top-6 md:top-8 right-8 z-40 fa-solid fa-magnifying-glass-plus" />
             <div className={"flex flex-col relative bg-white " + CARD_W + " " + CARD_H}>
                 <div className={" bg-stone-900 border-b-4 " + IMG_H + " " + tool.border_color}></div>
                 <div className="flex flex-row h-full py-4 px-4 gap-4 justify-center">
